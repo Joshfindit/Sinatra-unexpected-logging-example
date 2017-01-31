@@ -1,0 +1,28 @@
+version: '2'
+services:
+  railstest:
+    build: .
+    links: 
+      - "neo4j-experimental-logger"
+    command: ./await -i ./awaitfile -- bash -c "rm -f tmp/pids/server.pid && rerun --background notesapp_sinatra.rb"
+
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+      - EXTERNAL_PORT=${EXTERNAL_PORT}
+ #     - APP_PORT=4455 # Replaced with EXTERNAL_PORT in ./.env
+    ports:
+      - "${EXTERNAL_PORT}:${EXTERNAL_PORT}"
+
+    volumes:
+      - ./SinatraApp:/root/SinatraApp
+      - ./filestorage:/media/storage
+
+  neo4j-experimental-logger:
+    build: ./neo4jexperimental/
+    # command: ls -la /data
+    volumes:
+      - ./neo4jexperimental/data:/data
+      - ./neo4jexperimental/logs:/logs
+
+volumes:
+  railstest:

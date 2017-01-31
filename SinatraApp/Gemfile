@@ -1,0 +1,33 @@
+source 'https://rubygems.org'
+
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
+gem 'sinatra'
+#gem 'neo4j', '~> 7.2.3'
+#gem 'neo4j', github: 'neo4jrb/neo4j', branch: '8.0.x'
+gem 'neo4j'
+
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+#gem 'redcarpet' # Markdown render
+#gem 'pygments.rb' # Syntax highlighting for redcarpet. Needs `$ pygmentize -S default -f html > style.css` to be run
+#gem 'paperclip' # was 5.1.0
+#gem 'neo4jrb-paperclip' #save files. Was 0.0.3
+#gem 'refile-neo4j' # File attachments
+
+
+#gem 'securerandom'
+#gem 'rexml/document'
+gem 'plist' #For reading DayOne Entries
+gem 'os' #For querying about which OS we're running on
+#require 'socket' #For getting local IP addresses and MAC addresses
+#gem 'macaddr' # For getting the MAC address of windows/OSX/Linux
+#gem 'json'
+#gem 'digest' #For computing the file hash to append to a filename when creating the node # Stored in the class definition
+gem 'jsonapi-serializers'
